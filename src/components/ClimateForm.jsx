@@ -116,14 +116,8 @@ function ClimateForm() {
     <>
       <header>
         <div className="container mx-auto px-6 center">
-          <h3 className="text-blue-700 text-3xl font-bold">
-            Variables
-          </h3>
-          <div
-            className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-7 ${
-              elementos.length % 2 !== 0 ? "sm:col-span-2 lg:col-span-2" : ""
-            }`}
-          >
+          <h3 className="text-blue-700 text-3xl font-bold">Variables</h3>
+          <div className="flex flex-wrap justify-center gap-4 my-7">
             {elementos.map((elemento, index) => (
               <CustomCard
                 key={index}
@@ -140,34 +134,41 @@ function ClimateForm() {
         Reporte de riesgo de dengue basado en el clima
       </h3>
 
-      <div className="max-w-4xl mx-auto p-6 rounded-lg shadow border-2 border-blue-500 border-dashed rounded-lg cursor-pointer bg-blue-900 hover:bg-blue-800 focus:bg-blue-900 transition duration-300 my-6">
+      <div className="max-w-4xl mx-auto p-6 shadow border-2 border-blue-500 border-dashed rounded-lg cursor-pointer bg-blue-900 hover:bg-blue-800 focus:bg-blue-900 transition duration-300 my-6">
         <div className="flex flex-col sm:flex-row space-y-6 sm:space-y-0 sm:space-x-6">
           <form onSubmit={handleSubmit} className="flex-1 space-y-4">
             <label
               htmlFor="tavg"
               className="block text-lg font-medium text-gray-50 capitalize"
             >
-              Temperatura promedio
+              Temperatura promedio (°C)
             </label>
             <input
               type="number"
               name="tavg"
               id="tavg"
               onChange={handleChange}
+              min="-50"
+              max="60"
+              step="0.1"
               className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-gray-700"
               placeholder="Ingrese la temperatura promedio"
             />
+
             <label
               htmlFor="tmin"
               className="block text-lg font-medium text-gray-50 capitalize"
             >
-              Temperatura mínima
+              Temperatura mínima (°C)
             </label>
             <input
               type="number"
               name="tmin"
               id="tmin"
               onChange={handleChange}
+              min="-50"
+              max="60"
+              step="0.1"
               className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-gray-700"
               placeholder="Ingrese la temperatura mínima"
             />
@@ -176,13 +177,16 @@ function ClimateForm() {
               htmlFor="tmax"
               className="block text-lg font-medium text-gray-50 capitalize"
             >
-              Temperatura máxima
+              Temperatura máxima (°C)
             </label>
             <input
               type="number"
               name="tmax"
               id="tmax"
               onChange={handleChange}
+              min="-50"
+              max="60"
+              step="0.1"
               className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-gray-700"
               placeholder="Ingrese la temperatura máxima"
             />
@@ -191,13 +195,16 @@ function ClimateForm() {
               htmlFor="prcp"
               className="block text-lg font-medium text-gray-50 capitalize"
             >
-              Precipitación
+              Precipitación (mm)
             </label>
             <input
               type="number"
               name="prcp"
               id="prcp"
               onChange={handleChange}
+              min="0"
+              max="500"
+              step="0.1"
               className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-gray-700"
               placeholder="Ingrese la precipitación"
             />
@@ -206,13 +213,16 @@ function ClimateForm() {
               htmlFor="wdir"
               className="block text-lg font-medium text-gray-50 capitalize"
             >
-              Dirección del viento
+              Dirección del viento (°)
             </label>
             <input
               type="number"
               name="wdir"
               id="wdir"
               onChange={handleChange}
+              min="0"
+              max="360"
+              step="0.1"
               className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-gray-700"
               placeholder="Ingrese la dirección del viento"
             />
@@ -221,13 +231,16 @@ function ClimateForm() {
               htmlFor="wspd"
               className="block text-lg font-medium text-gray-50 capitalize"
             >
-              Velocidad del viento
+              Velocidad del viento (km/h)
             </label>
             <input
               type="number"
               name="wspd"
               id="wspd"
               onChange={handleChange}
+              min="0"
+              max="200"
+              step="0.1"
               className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-gray-700"
               placeholder="Ingrese la velocidad del viento"
             />
@@ -236,13 +249,16 @@ function ClimateForm() {
               htmlFor="pres"
               className="block text-lg font-medium text-gray-50 capitalize"
             >
-              Presión del aire
+              Presión del aire (hPa)
             </label>
             <input
               type="number"
               name="pres"
               id="pres"
               onChange={handleChange}
+              min="900"
+              max="1100"
+              step="0.1"
               className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-gray-700"
               placeholder="Ingrese la presión del aire"
             />
@@ -264,6 +280,7 @@ function ClimateForm() {
               </Link>
             </div>
           </form>
+
           <div className="result-container flex-1 mt-6 sm:mt-0">
             {loading && (
               <div className="flex items-center justify-center">
